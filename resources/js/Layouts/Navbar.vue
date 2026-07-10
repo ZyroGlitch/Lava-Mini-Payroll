@@ -1,3 +1,8 @@
+<script setup>
+import { Link } from '@inertiajs/vue3'
+
+</script>
+
 <template>
     <div>
         <header>
@@ -12,10 +17,10 @@
                         <a class="navbar-brand" href="#">Hidden brand</a>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                                <Link class="nav-link active" aria-current="page" href="/">Home</Link>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/about">About</a>
+                                <Link class="nav-link" href="/about">About</Link>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
