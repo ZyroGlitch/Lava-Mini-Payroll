@@ -13,12 +13,24 @@ createInertiaApp({
 
         // Set the default layout for all pages
         let page = pages[`./Pages/${name}.vue`]
-        page.default.layout = page.default.layout || Layout;
+
+        // Only apply default layout if layout is undefined (not explicitly set, including null)
+        if (page.default.layout === undefined) {
+            page.default.layout = Layout;
+        }
         return page;
     },
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .mount(el)
+    },
+    progress: {
+        // The color of the progress bar...
+        color: 'blue',
+        // Whether to include the default NProgress styles...
+        includeCSS: true,
+        // Whether the NProgress spinner will be shown...
+        showSpinner: false,
     },
 })

@@ -1,0 +1,47 @@
+:root {
+  --bg-color: #FBFBFB;
+  --text-color: #112D4E;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+.form-control {
+  transition: border-color 0.2s ease;
+}
+.form-control:focus {
+  border-color: oklch(71.5% 0.143 215.221deg);
+  box-shadow: none;
+  outline: none;
+}
+
+.btn.btn-custom {
+  --btn-bg: oklch(71.5% 0.143 215.221);
+  --btn-color: #ffffff;
+  --btn-hover-bg: oklch(60.9% 0.126 221.723);
+  --btn-hover-color: #ffffff;
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
+  border: none;
+}
+.btn.btn-custom:hover {
+  background-color: var(--btn-hover-bg);
+  color: var(--btn-hover-color);
+}
+
+.btn.btn-outline-danger {
+  --btn-color: oklch(37.2% 0.044 257.287);
+  --btn-hover-bg: oklch(50% 0.22 25);
+  --btn-hover-color: #ffffff;
+  background-color: #ffffff;
+  color: var(--btn-color);
+  border: 1px solid var(--btn-color);
+}
+.btn.btn-outline-danger:hover {
+  background-color: var(--btn-hover-bg);
+  color: var(--btn-hover-color);
+  border-color: var(--btn-hover-bg);
+}/*# sourceMappingURL=custom.css.map */
