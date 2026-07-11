@@ -1,11 +1,10 @@
-// import './bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './echo';
 
 // Inertia Client Side Setup
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import Layout from './Layouts/Navbar.vue';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy'
 
 createInertiaApp({
     resolve: name => {
@@ -23,6 +22,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(ZiggyVue)
             .mount(el)
     },
     progress: {

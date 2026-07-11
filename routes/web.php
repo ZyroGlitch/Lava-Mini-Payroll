@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::inertia('/', 'Landing_Page', ['user' => 'Kyzer Chum']);
+// Vue & Inertia Refresher
+Route::inertia('/', 'Demo/Index')->name('demo.index');
+
+Route::inertia('/login', 'Login', ['user' => 'Kyzer Chum']);
 Route::inertia('/about', 'About');
 
 Route::get('/data', [DataController::class, 'index']);

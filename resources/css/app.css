@@ -1,5 +1,80 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@layer base {
+    body {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #334155 !important; /* Tailwind's slate-700 */
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+    }
+
+    h1 {
+        font-size: 2.5rem !important;
+        /* 40px */
+    }
+
+    h2 {
+        font-size: 2rem !important;
+        /* 32px */
+    }
+
+    h3 {
+        font-size: 1.75rem !important;
+        /* 28px */
+    }
+
+    h4 {
+        font-size: 1.5rem !important;
+        /* 24px */
+    }
+
+    h5 {
+        font-size: 1.25rem !important;
+        /* 20px */
+    }
+
+    h6 {
+        font-size: 1rem !important;
+        /* 16px */
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    /* Force DataTables Tailwind layout rows to row/justify-between/items-center */
+    .dt-container .dt-layout-row {
+        display: flex !important;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    .dt-container .dt-layout-cell {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Optional: stack on small screens instead of squeezing */
+    @media (max-width: 640px) {
+        .dt-container .dt-layout-row {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+}
