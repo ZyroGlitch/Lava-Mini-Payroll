@@ -10,7 +10,8 @@
         "inertiajs/inertia-laravel": "^3.1",
         "laravel/framework": "^11.31",
         "laravel/reverb": "^1.0",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "tightenco/ziggy": "^2.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -51,7 +52,7 @@
         ],
     "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74,#3b82f6\" \"php artisan serve\" \"php artisan reverb:start\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,reverb,logs,vite"
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74,#3b82f6\" \"php artisan serve\" \"php artisan reverb:start\" \"npm run dev\" --names=server,reverb,logs,vite"
         ]
     },
     "extra": {
