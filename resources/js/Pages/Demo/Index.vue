@@ -10,15 +10,25 @@
     });
 
     // Tanstack Vue Table Properties
-    import { useVueTable, FlexRender, getCoreRowModel, getPaginationRowModel } from "@tanstack/vue-table";
+    import {
+        useVueTable,
+        FlexRender,
+        getCoreRowModel,
+        getPaginationRowModel,
+        getSortedRowModel,
+        getFilteredRowModel,
+    } from "@tanstack/vue-table";
 
     const data = ref(people);
+    const sorting = ref([]);
+    const filter = ref("");
 
     // Table Header while chaining their column referrence
     const columnsPeople = [
         {
             accessorKey: "id",
             header: "ID",
+            enableSorting: false, // Disable sorting for this column
         },
         // {
         //     accessorFn: (row) => `${row.last_name} ${row.first_name} `,
@@ -53,6 +63,7 @@
             accessorKey: "edit",
             header: "Actions",
             cell: ({ row }) => h(EditButton, { id: row.original.id }),
+            enableSorting: false, // Disable sorting for this column
         },
     ];
 
@@ -60,13 +71,38 @@
         data: data.value,
         columns: columnsPeople,
         getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
+        getPaginationRowModel: getPaginationRowModel(), // Table Navigation
+        getSortedRowModel: getSortedRowModel(), // Column Sorting
+        getFilteredRowModel: getFilteredRowModel(), // Search Filter
+
+        state: {
+            // Column Sorting
+            get sorting() {
+                return sorting.value;
+            },
+            // Search Filter
+            get globalFilter() {
+                return filter.value;
+            },
+        },
+        onSortingChange: (updaterOrValue) => {
+            sorting.value = typeof updaterOrValue === "function" ? updaterOrValue(sorting.value) : updaterOrValue;
+        },
     });
 </script>
 
 <template>
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="mt-8 flow-root">
+            <!-- Search Filter -->
+            <div class="py-1">
+                <input
+                    class="border border-gray-300 rounded p-2"
+                    placeholder="Search..."
+                    v-model="filter"
+                />
+            </div>
+
             <!-- Pagination -->
             <div class="flex justify-between items-center py-4">
                 <!-- Table Navigation -->
@@ -141,11 +177,14 @@
                                     :key="header.id"
                                     scope="col"
                                     class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                    :class="{ 'cursor-pointer select-none': header.column.getCanSort() }"
+                                    @click="header.column.getToggleSortingHandler()?.($event)"
                                 >
                                     <FlexRender
                                         :render="header.column.columnDef.header"
                                         :props="header.getContext()"
                                     />
+                                    {{ { asc: "↑", desc: "↓" }[header.column.getIsSorted()] }}
                                 </th>
                             </tr>
                         </thead>
